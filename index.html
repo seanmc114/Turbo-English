@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1a47b8">
+<title>Turbo English ⚡</title>
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root { --blue:#1a47b8; --blue-lt:#2d5fd4; --sun:#f5a623; --sun-deep:#e07b00; --terra:#c94f2c; --sky:#4ab8f5; --sand:#fff9ef; --white:#ffffff; --ink:#1c1208; --muted:#7a6a58; --shadow:rgba(28,18,8,0.09); }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{background:var(--sand);color:var(--ink);font-family:'Nunito',sans-serif;min-height:100vh;overflow-x:hidden;}
+.sky-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,#87ceeb 0%,#b8e4f7 28%,#d8eefa 52%,#fff9ef 100%);}
+.sun-orb{position:fixed;top:-55px;right:-35px;width:200px;height:200px;border-radius:50%;z-index:0;pointer-events:none;background:radial-gradient(circle at 38% 38%,#ffe877,#f5a623 55%,#e07b00);box-shadow:0 0 0 28px rgba(245,166,35,0.09),0 0 0 60px rgba(245,166,35,0.05);animation:sunpulse 5s ease-in-out infinite;}
+@keyframes sunpulse{0%,100%{box-shadow:0 0 0 28px rgba(245,166,35,0.09),0 0 0 60px rgba(245,166,35,0.05);}50%{box-shadow:0 0 0 38px rgba(245,166,35,0.12),0 0 0 80px rgba(245,166,35,0.07);}}
+.clouds{position:fixed;top:0;left:0;right:0;height:220px;z-index:0;pointer-events:none;overflow:hidden;}
+.cloud{position:absolute;background:white;border-radius:50px;opacity:0.8;animation:drift linear infinite;}
+.cloud::before,.cloud::after{content:'';position:absolute;background:white;border-radius:50%;}
+.c1{width:110px;height:32px;top:28px;animation-duration:70s;animation-delay:-5s;}.c1::before{width:52px;height:48px;top:-25px;left:14px;}.c1::after{width:40px;height:36px;top:-17px;left:50px;}
+.c2{width:80px;height:24px;top:68px;animation-duration:90s;animation-delay:-40s;opacity:0.55;}.c2::before{width:38px;height:34px;top:-18px;left:10px;}.c2::after{width:30px;height:26px;top:-13px;left:34px;}
+.c3{width:130px;height:36px;top:12px;animation-duration:115s;animation-delay:-65s;opacity:0.65;}.c3::before{width:62px;height:54px;top:-28px;left:18px;}.c3::after{width:48px;height:42px;top:-20px;left:62px;}
+.c4{width:68px;height:20px;top:90px;animation-duration:80s;animation-delay:-25s;opacity:0.4;}.c4::before{width:32px;height:28px;top:-15px;left:8px;}.c4::after{width:26px;height:22px;top:-10px;left:30px;}
+@keyframes drift{from{transform:translateX(-220px);}to{transform:translateX(calc(100vw + 220px));}}
+.wrap{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:0 18px 80px;}
+.site-header{padding:36px 0 28px;text-align:center;animation:riseUp 0.7s ease both;}
+.brand-turbo{font-family:'Boogaloo',cursive;font-size:clamp(46px,12vw,60px);line-height:0.88;color:var(--sun-deep);-webkit-text-stroke:2px var(--terra);text-shadow:4px 4px 0 rgba(201,79,44,0.2);display:block;}
+.brand-english{font-family:'Boogaloo',cursive;font-size:clamp(34px,9vw,44px);line-height:0.9;color:var(--blue);-webkit-text-stroke:1.5px var(--ink);text-shadow:3px 3px 0 rgba(28,18,8,0.12);display:block;}
+.tagline{font-family:'Caveat',cursive;font-size:17px;color:var(--muted);font-weight:600;margin-top:10px;}
+.sec-label{font-size:10px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-left:2px;display:flex;align-items:center;gap:10px;}
+.sec-label::after{content:'';flex:1;height:2px;background:linear-gradient(to right,rgba(26,71,184,0.15),transparent);border-radius:2px;}
+/* Level cards */
+.level-card{display:block;text-decoration:none;color:var(--ink);background:white;border-radius:18px;overflow:hidden;box-shadow:0 4px 20px var(--shadow);margin-bottom:14px;transition:transform 0.15s,box-shadow 0.18s;animation:riseUp 0.5s ease both;}
+.level-card:nth-child(1){animation-delay:0.15s;}.level-card:nth-child(2){animation-delay:0.22s;}.level-card:nth-child(3){animation-delay:0.29s;}.level-card:nth-child(4){animation-delay:0.36s;}
+.level-card:active{transform:scale(0.97) translateY(2px);box-shadow:0 2px 8px var(--shadow);}
+.card-stripe{height:6px;}
+.lc-a1 .card-stripe{background:linear-gradient(90deg,#22c55e,#4ade80);}
+.lc-a2 .card-stripe{background:linear-gradient(90deg,#1a47b8,#4ab8f5);}
+.lc-b1 .card-stripe{background:linear-gradient(90deg,#f59e0b,#fcd34d);}
+.lc-b2 .card-stripe{background:linear-gradient(90deg,#a855f7,#c084fc);}
+.card-inner{padding:16px 18px 18px;display:flex;align-items:center;gap:14px;}
+.card-badge{font-family:'Boogaloo',cursive;font-size:1.9rem;font-weight:900;min-width:52px;text-align:center;line-height:1;}
+.lc-a1 .card-badge{color:#22c55e;}.lc-a2 .card-badge{color:#1a47b8;}.lc-b1 .card-badge{color:#f59e0b;}.lc-b2 .card-badge{color:#a855f7;}
+.card-info{flex:1;}
+.card-title{font-family:'Boogaloo',cursive;font-size:1.3rem;color:var(--ink);margin-bottom:2px;}
+.card-desc{font-size:0.75rem;color:var(--muted);font-weight:600;margin-bottom:6px;}
+.card-topics{font-size:0.7rem;color:var(--muted);font-style:italic;}
+.card-progress{text-align:right;min-width:60px;}
+.card-stars{font-size:0.85rem;display:block;letter-spacing:2px;margin-bottom:3px;}
+.card-score{font-family:'Boogaloo',cursive;font-size:1.1rem;color:var(--blue);}
+.card-arrow{font-size:1.1rem;color:rgba(28,18,8,0.15);transition:all 0.2s;margin-left:6px;}
+.level-card:hover .card-arrow{color:rgba(28,18,8,0.4);}
+/* About */
+.about-box{background:white;border-radius:16px;padding:18px 20px;font-size:0.8rem;color:var(--muted);font-weight:600;line-height:1.7;box-shadow:0 4px 18px var(--shadow);text-align:center;margin-bottom:24px;}
+.about-box strong{color:var(--ink);}
+.footer-copy{text-align:center;font-size:11px;font-weight:700;color:rgba(28,18,8,0.3);letter-spacing:0.04em;padding:10px 0;}
+@keyframes riseUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<div class="sky-bg"></div>
+<div class="sun-orb"></div>
+<div class="clouds"><div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div><div class="cloud c4"></div></div>
+
+<div class="wrap">
+  <header class="site-header">
+    <span class="brand-turbo">Turbo</span>
+    <span class="brand-english">English</span>
+    <div class="tagline">¡Aprende inglés a tope! ☀️</div>
+  </header>
+
+  <div class="sec-label">Elige tu nivel</div>
+
+  <a href="a1.html" class="level-card lc-a1">
+    <div class="card-stripe"></div>
+    <div class="card-inner">
+      <div class="card-badge">A1</div>
+      <div class="card-info">
+        <div class="card-title">Principiante</div>
+        <div class="card-desc">Saludos · Familia · Colores · Ropa · Casa</div>
+        <div class="card-topics" id="topics-a1">12 temas</div>
+      </div>
+      <div class="card-progress">
+        <span class="card-stars" id="stars-a1">☆☆☆</span>
+        <span class="card-score" id="score-a1"></span>
+      </div>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <a href="a2.html" class="level-card lc-a2">
+    <div class="card-stripe"></div>
+    <div class="card-inner">
+      <div class="card-badge">A2</div>
+      <div class="card-info">
+        <div class="card-title">Elemental</div>
+        <div class="card-desc">Rutina · Trabajo · Viajes · Compras · Ocio</div>
+        <div class="card-topics" id="topics-a2">12 temas</div>
+      </div>
+      <div class="card-progress">
+        <span class="card-stars" id="stars-a2">☆☆☆</span>
+        <span class="card-score" id="score-a2"></span>
+      </div>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <a href="b1.html" class="level-card lc-b1">
+    <div class="card-stripe"></div>
+    <div class="card-inner">
+      <div class="card-badge">B1</div>
+      <div class="card-info">
+        <div class="card-title">Pre-intermedio</div>
+        <div class="card-desc">Emociones · Phrasal verbs · Medio ambiente</div>
+        <div class="card-topics" id="topics-b1">12 temas</div>
+      </div>
+      <div class="card-progress">
+        <span class="card-stars" id="stars-b1">☆☆☆</span>
+        <span class="card-score" id="score-b1"></span>
+      </div>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <a href="b2.html" class="level-card lc-b2">
+    <div class="card-stripe"></div>
+    <div class="card-inner">
+      <div class="card-badge">B2</div>
+      <div class="card-info">
+        <div class="card-title">Intermedio</div>
+        <div class="card-desc">Idioms · Negocios · Política · Registro formal</div>
+        <div class="card-topics" id="topics-b2">10 temas</div>
+      </div>
+      <div class="card-progress">
+        <span class="card-stars" id="stars-b2">☆☆☆</span>
+        <span class="card-score" id="score-b2"></span>
+      </div>
+      <span class="card-arrow">→</span>
+    </div>
+  </a>
+
+  <div class="about-box">
+    <strong>¿Cómo funciona?</strong><br>
+    Elige tu nivel → elige un tema → responde las preguntas lo más rápido posible.<br>
+    Gana ⭐⭐⭐ y bate tu récord. Sin registro. Sin suscripción. Solo vocabulario.
+  </div>
+
+  <div class="footer-copy">© Turbo English · Imaginación y Perseverancia</div>
+</div>
+
+<script>
+const LEVELS = {
+  a1:{prefix:'te_a1_',ids:['saludos','numeros','colores','familia','cuerpo','casa','comida','dias','tiempo','verbos','ropa','ciudad']},
+  a2:{prefix:'te_a2_',ids:['rutina','trabajo','ocio','viajes','compras','salud','descripcion','comida2','tecnologia','casa2','pasado','futuro']},
+  b1:{prefix:'te_b1_',ids:['emociones','phrasal1','medioambiente','dinero','medios','relaciones','educacion','salud2','trabajo2','falsosAmigos','viajes2','cultura']},
+  b2:{prefix:'te_b2_',ids:['phrasal2','negocios','sociedad','idioms','ciencia','registro','medioambiente2','salud3','lengua','phrasal3']}
+};
+Object.entries(LEVELS).forEach(([level,cfg])=>{
+  let total=0,played=0;
+  cfg.ids.forEach(id=>{const s=parseInt(localStorage.getItem(cfg.prefix+id+'_stars')||'0');total+=s;if(s>0)played++;});
+  const n=cfg.ids.length;
+  document.getElementById('topics-'+level).textContent=n+' temas · '+played+' completados';
+  if(played>0){
+    const avg=Math.round(total/n);
+    document.getElementById('stars-'+level).textContent='⭐'.repeat(Math.min(avg,3))+'☆'.repeat(Math.max(0,3-avg));
+    document.getElementById('score-'+level).textContent=(total/n).toFixed(1)+' ★';
+  }
+});
+</script>
+</body>
+</html>
