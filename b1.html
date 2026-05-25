@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#f59e0b">
+<title>Turbo English B1 · Pre-intermedio</title>
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Nunito:wght@400;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1a47b8;--sun:#f5a623;--sun-deep:#e07b00;--terra:#c94f2c;--sky:#4ab8f5;--sand:#fff9ef;--ink:#1c1208;--muted:#7a6a58;--shadow:rgba(28,18,8,0.09);--green:#22c55e;--red:#e03c2c;--lc:#f59e0b;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{background:var(--sand);color:var(--ink);font-family:'Nunito',sans-serif;min-height:100vh;overflow-x:hidden;}
+.sky-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,#87ceeb 0%,#b8e4f7 28%,#d8eefa 52%,#fff9ef 100%);}
+.sun-orb{position:fixed;top:-55px;right:-35px;width:200px;height:200px;border-radius:50%;z-index:0;pointer-events:none;background:radial-gradient(circle at 38% 38%,#ffe877,#f5a623 55%,#e07b00);box-shadow:0 0 0 28px rgba(245,166,35,0.09),0 0 0 60px rgba(245,166,35,0.05);animation:sunpulse 5s ease-in-out infinite;}
+@keyframes sunpulse{0%,100%{box-shadow:0 0 0 28px rgba(245,166,35,0.09),0 0 0 60px rgba(245,166,35,0.05);}50%{box-shadow:0 0 0 38px rgba(245,166,35,0.12),0 0 0 80px rgba(245,166,35,0.07);}}
+.clouds{position:fixed;top:0;left:0;right:0;height:220px;z-index:0;pointer-events:none;overflow:hidden;}
+.cloud{position:absolute;background:white;border-radius:50px;opacity:0.8;animation:drift linear infinite;}
+.cloud::before,.cloud::after{content:'';position:absolute;background:white;border-radius:50%;}
+.c1{width:110px;height:32px;top:28px;animation-duration:70s;animation-delay:-5s;}.c1::before{width:52px;height:48px;top:-25px;left:14px;}.c1::after{width:40px;height:36px;top:-17px;left:50px;}
+.c2{width:80px;height:24px;top:68px;animation-duration:90s;animation-delay:-40s;opacity:0.55;}.c2::before{width:38px;height:34px;top:-18px;left:10px;}.c2::after{width:30px;height:26px;top:-13px;left:34px;}
+.c3{width:130px;height:36px;top:12px;animation-duration:115s;animation-delay:-65s;opacity:0.65;}.c3::before{width:62px;height:54px;top:-28px;left:18px;}.c3::after{width:48px;height:42px;top:-20px;left:62px;}
+.c4{width:68px;height:20px;top:90px;animation-duration:80s;animation-delay:-25s;opacity:0.4;}.c4::before{width:32px;height:28px;top:-15px;left:8px;}.c4::after{width:26px;height:22px;top:-10px;left:30px;}
+@keyframes drift{from{transform:translateX(-220px);}to{transform:translateX(calc(100vw + 220px));}}
+.wrap{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:0 18px 80px;}
+.site-header{padding:24px 0 16px;text-align:center;animation:riseUp 0.6s ease both;}
+.back-link{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:white;text-decoration:none;font-size:12px;font-weight:800;padding:6px 14px;border-radius:20px;margin-bottom:12px;letter-spacing:0.05em;box-shadow:0 3px 10px rgba(26,71,184,0.25);}
+.brand-turbo{font-family:'Boogaloo',cursive;font-size:clamp(36px,10vw,48px);line-height:0.88;color:var(--sun-deep);-webkit-text-stroke:2px var(--terra);text-shadow:4px 4px 0 rgba(201,79,44,0.18);display:block;}
+.brand-english{font-family:'Boogaloo',cursive;font-size:clamp(26px,7vw,34px);line-height:0.9;color:var(--blue);-webkit-text-stroke:1.5px var(--ink);text-shadow:3px 3px 0 rgba(28,18,8,0.1);display:block;}
+.level-pill{display:inline-block;background:var(--lc);color:white;font-family:'Boogaloo',cursive;font-size:14px;padding:4px 16px;border-radius:20px;letter-spacing:1px;margin-top:8px;}
+.sec-label{font-size:10px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-left:2px;display:flex;align-items:center;gap:10px;}
+.sec-label::after{content:'';flex:1;height:2px;background:linear-gradient(to right,rgba(26,71,184,0.15),transparent);border-radius:2px;}
+.tile-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px;}
+.tile{background:white;border-radius:16px;padding:0;cursor:pointer;transition:transform 0.15s,box-shadow 0.18s;box-shadow:0 4px 16px var(--shadow);position:relative;overflow:hidden;border:none;text-align:left;width:100%;}
+.tile:active{transform:scale(0.97);box-shadow:0 2px 8px var(--shadow);}
+.tile-stripe{height:5px;background:linear-gradient(90deg,var(--lc),var(--sky));}
+.tile-body{padding:12px 12px 12px;}
+.tile-emoji{font-size:1.8rem;display:block;margin-bottom:5px;}
+.tile-name{font-family:'Boogaloo',cursive;font-size:1rem;color:var(--ink);line-height:1.2;margin-bottom:2px;}
+.tile-sub{font-size:0.68rem;color:var(--muted);font-weight:600;margin-bottom:7px;}
+.tile-stars{font-size:0.78rem;letter-spacing:2px;}
+/* GAME */
+#game-view{display:none;}
+#results-view{display:none;}
+.game-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-top:22px;}
+.back-btn{background:var(--blue);border:none;color:white;border-radius:50%;width:36px;height:36px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 3px 10px rgba(26,71,184,0.3);}
+.game-topic-name{font-family:'Boogaloo',cursive;font-size:1.25rem;color:var(--ink);flex:1;}
+.stat-box{background:white;border-radius:12px;padding:5px 12px;text-align:center;box-shadow:0 3px 10px var(--shadow);}
+.stat-val{font-family:'Boogaloo',cursive;font-size:1.2rem;color:var(--blue);display:block;}
+.stat-label{font-size:0.6rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;}
+.progress-bar-wrap{background:rgba(0,0,0,0.06);border-radius:10px;height:6px;margin-bottom:18px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--lc),var(--sky));border-radius:10px;transition:width 0.3s;}
+.question-card{background:white;border-radius:20px;overflow:hidden;margin-bottom:14px;box-shadow:0 6px 24px var(--shadow);}
+.question-stripe{height:5px;background:linear-gradient(90deg,var(--lc),var(--sky));}
+.question-body{padding:22px 20px 18px;text-align:center;}
+.q-prompt-label{font-size:0.68rem;font-weight:800;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.q-spanish{font-family:'Boogaloo',cursive;font-size:2rem;color:var(--ink);margin-bottom:6px;line-height:1.2;}
+.q-hint{font-size:0.78rem;color:var(--muted);font-style:italic;min-height:1.2em;}
+.answers-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.ans-btn{background:white;border:2px solid rgba(0,0,0,0.07);border-radius:14px;color:var(--ink);font-family:'Nunito',sans-serif;font-size:0.9rem;font-weight:700;padding:13px 8px;cursor:pointer;transition:all 0.15s;text-align:center;line-height:1.2;box-shadow:0 3px 10px var(--shadow);}
+.ans-btn:active{transform:scale(0.97);}
+.ans-btn.correct{background:#e8faf0;border-color:var(--green);color:#166534;}
+.ans-btn.wrong{background:#fef2f2;border-color:var(--red);color:var(--red);}
+.ans-btn:disabled{cursor:default;}
+.feedback-row{text-align:center;min-height:32px;font-family:'Boogaloo',cursive;font-size:1.25rem;margin-bottom:6px;}
+.feedback-correct{color:var(--green);}.feedback-wrong{color:var(--red);}
+.results-card{background:white;border-radius:22px;overflow:hidden;box-shadow:0 8px 30px var(--shadow);margin-top:22px;}
+.results-stripe{height:6px;background:linear-gradient(90deg,var(--lc),var(--sky),var(--sun));}
+.results-body{padding:28px 22px;text-align:center;}
+.results-emoji{font-size:3.5rem;display:block;margin-bottom:10px;}
+.results-title{font-family:'Boogaloo',cursive;font-size:2rem;color:var(--ink);margin-bottom:4px;}
+.results-topic{color:var(--muted);font-size:0.85rem;font-weight:600;margin-bottom:18px;}
+.results-stars{font-size:2.2rem;margin-bottom:18px;display:block;letter-spacing:4px;}
+.results-stats{display:flex;justify-content:center;gap:16px;margin-bottom:20px;}
+.r-stat{background:var(--sand);border-radius:14px;padding:14px 20px;text-align:center;}
+.r-stat-val{font-family:'Boogaloo',cursive;font-size:1.8rem;color:var(--blue);display:block;}
+.r-stat-label{font-size:0.68rem;font-weight:800;color:var(--muted);text-transform:uppercase;}
+.best-time-note{font-size:0.8rem;font-weight:700;color:var(--terra);margin-bottom:18px;min-height:1.2em;}
+.btn-primary{background:linear-gradient(135deg,var(--lc),var(--sky));color:white;border:none;border-radius:14px;font-family:'Boogaloo',cursive;font-size:1.2rem;padding:14px 28px;cursor:pointer;box-shadow:0 5px 18px rgba(26,71,184,0.25);display:inline-block;margin:5px;}
+.btn-secondary{background:white;color:var(--blue);border:2px solid rgba(26,71,184,0.2);border-radius:14px;font-family:'Boogaloo',cursive;font-size:1.1rem;padding:13px 24px;cursor:pointer;display:inline-block;margin:5px;box-shadow:0 3px 10px var(--shadow);}
+.footer-copy{text-align:center;font-size:11px;font-weight:700;color:rgba(28,18,8,0.3);letter-spacing:0.04em;padding:24px 0 10px;}
+@keyframes riseUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<div class="sky-bg"></div>
+<div class="sun-orb"></div>
+<div class="clouds"><div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div><div class="cloud c4"></div></div>
+
+<div class="wrap">
+
+<!-- HUB -->
+<div id="hub-view">
+  <header class="site-header">
+    <a href="index.html" class="back-link">← Turbo English</a>
+    <span class="brand-turbo">Turbo</span>
+    <span class="brand-english">English</span>
+    <span class="level-pill">B1 · Pre-intermedio</span>
+  </header>
+  <div class="sec-label">Elige un tema · Choose a topic</div>
+  <div class="tile-grid" id="tile-grid"></div>
+  <div class="footer-copy">© Turbo English · Imaginación y Perseverancia</div>
+</div>
+
+<!-- GAME -->
+<div id="game-view">
+  <div class="game-header">
+    <button class="back-btn" onclick="showHub()">←</button>
+    <div class="game-topic-name" id="game-topic-name"></div>
+    <div class="stat-box"><span class="stat-val" id="stat-score">0</span><span class="stat-label">aciertos</span></div>
+    <div class="stat-box"><span class="stat-val" id="stat-timer">0s</span><span class="stat-label">tiempo</span></div>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-bar" style="width:0%"></div></div>
+  <div class="question-card">
+    <div class="question-stripe"></div>
+    <div class="question-body">
+      <div class="q-prompt-label">¿Cómo se dice en inglés?</div>
+      <div class="q-spanish" id="q-spanish"></div>
+      <div class="q-hint" id="q-hint"></div>
+    </div>
+  </div>
+  <div class="answers-grid" id="answers-grid"></div>
+  <div class="feedback-row" id="feedback-row"></div>
+</div>
+
+<!-- RESULTS -->
+<div id="results-view">
+  <div class="results-card">
+    <div class="results-stripe"></div>
+    <div class="results-body">
+      <span class="results-emoji" id="results-emoji">🎉</span>
+      <div class="results-title">¡Bien hecho!</div>
+      <div class="results-topic" id="results-topic"></div>
+      <span class="results-stars" id="results-stars"></span>
+      <div class="results-stats">
+        <div class="r-stat"><span class="r-stat-val" id="r-score"></span><span class="r-stat-label">correctas</span></div>
+        <div class="r-stat"><span class="r-stat-val" id="r-time"></span><span class="r-stat-label">segundos</span></div>
+      </div>
+      <div class="best-time-note" id="best-time-note"></div>
+      <button class="btn-primary" onclick="replayGame()">🔄 Otra vez</button>
+      <button class="btn-secondary" onclick="showHub()">← Temas</button>
+    </div>
+  </div>
+  <div class="footer-copy">© Turbo English · Imaginación y Perseverancia</div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+const STORAGE_PREFIX='te_b1_';
+const TOPICS=[
+  {id:'emociones',emoji:'❤️',name:'Emociones',sub:'Feelings',words:[{es:'estar emocionado',en:'to be excited'},{es:'estar nervioso',en:'to be nervous'},{es:'estar agotado',en:'to be exhausted'},{es:'estar harto',en:'to be fed up'},{es:'estar orgulloso',en:'to be proud'},{es:'estar avergonzado',en:'to be embarrassed'},{es:'estar decepcionado',en:'to be disappointed'},{es:'estar aliviado',en:'to be relieved'},{es:'estar celoso',en:'to be jealous'},{es:'echarse a reír',en:'to burst out laughing'},{es:'ponerse furioso',en:'to get furious'},{es:'me da igual',en:'I don't mind'},{es:'me apetece',en:'I feel like / I fancy'},{es:'me cae bien',en:'I like (a person)'},{es:'me cae mal',en:'I don't like (a person)'},{es:'echar de menos',en:'to miss'},{es:'llevarse bien con',en:'to get on well with'},{es:'confiar en',en:'to trust'},{es:'superar',en:'to get over'},{es:'ponerse triste',en:'to become sad'}]},
+  {id:'phrasal1',emoji:'🔧',name:'Phrasal verbs I',sub:'Essential phrasal verbs',words:[{es:'apagar (luz/tele)',en:'to turn off'},{es:'encender (luz/tele)',en:'to turn on'},{es:'subir el volumen',en:'to turn up'},{es:'bajar el volumen',en:'to turn down'},{es:'llevarme bien con',en:'to get on with'},{es:'averiguar',en:'to find out'},{es:'romper con alguien',en:'to break up with'},{es:'esperar con ilusión',en:'to look forward to'},{es:'cuidar de',en:'to look after'},{es:'buscar información',en:'to look up'},{es:'salir con alguien',en:'to go out with'},{es:'crecer',en:'to grow up'},{es:'quedarse sin',en:'to run out of'},{es:'devolver',en:'to give back'},{es:'rendirse',en:'to give up'},{es:'aplazar',en:'to put off'},{es:'ponerse al día',en:'to catch up'},{es:'aparecer',en:'to turn up / show up'},{es:'dejar de hacer algo',en:'to give up doing something'},{es:'dar con alguien',en:'to come across'}]},
+  {id:'medioambiente',emoji:'🌍',name:'Medio ambiente',sub:'Environment',words:[{es:'el cambio climático',en:'climate change'},{es:'el calentamiento global',en:'global warming'},{es:'la contaminación',en:'pollution'},{es:'las energías renovables',en:'renewable energy'},{es:'la energía solar',en:'solar energy'},{es:'reciclar',en:'to recycle'},{es:'la huella de carbono',en:'carbon footprint'},{es:'el combustible fósil',en:'fossil fuel'},{es:'la deforestación',en:'deforestation'},{es:'en peligro de extinción',en:'endangered'},{es:'sostenible',en:'sustainable'},{es:'los residuos',en:'waste'},{es:'reducir el consumo',en:'to reduce consumption'},{es:'la sequía',en:'drought'},{es:'las inundaciones',en:'floods'},{es:'el nivel del mar',en:'sea level'},{es:'las emisiones de CO2',en:'CO2 emissions'},{es:'el transporte público',en:'public transport'},{es:'ecológico',en:'eco-friendly'},{es:'el plástico de un solo uso',en:'single-use plastic'}]},
+  {id:'dinero',emoji:'💶',name:'El dinero',sub:'Money',words:[{es:'el sueldo',en:'salary'},{es:'el presupuesto',en:'budget'},{es:'ahorrar',en:'to save'},{es:'gastar',en:'to spend'},{es:'ganar dinero',en:'to earn money'},{es:'el préstamo',en:'loan'},{es:'la hipoteca',en:'mortgage'},{es:'la deuda',en:'debt'},{es:'el interés',en:'interest'},{es:'la cuenta bancaria',en:'bank account'},{es:'el cajero automático',en:'cash machine / ATM'},{es:'la transferencia bancaria',en:'bank transfer'},{es:'invertir',en:'to invest'},{es:'la bolsa',en:'stock market'},{es:'el seguro',en:'insurance'},{es:'el impuesto',en:'tax'},{es:'la factura',en:'invoice / bill'},{es:'permitirse',en:'to afford'},{es:'estar en números rojos',en:'to be overdrawn'},{es:'llegar a fin de mes',en:'to make ends meet'}]},
+  {id:'medios',emoji:'📰',name:'Los medios',sub:'Media & news',words:[{es:'las noticias',en:'the news'},{es:'el titular',en:'headline'},{es:'el periodista',en:'journalist'},{es:'el reportaje',en:'report'},{es:'la entrevista',en:'interview'},{es:'el debate',en:'debate'},{es:'la opinión',en:'opinion'},{es:'estar de acuerdo',en:'to agree'},{es:'no estar de acuerdo',en:'to disagree'},{es:'la fake news',en:'fake news'},{es:'la red social',en:'social network'},{es:'el seguidor',en:'follower'},{es:'publicar',en:'to post'},{es:'comentar',en:'to comment'},{es:'compartir',en:'to share'},{es:'viral',en:'viral'},{es:'la libertad de prensa',en:'freedom of the press'},{es:'en directo',en:'live'},{es:'el podcast',en:'podcast'},{es:'el streaming',en:'streaming'}]},
+  {id:'relaciones',emoji:'👫',name:'Las relaciones',sub:'Relationships',words:[{es:'la amistad',en:'friendship'},{es:'la confianza',en:'trust'},{es:'el apoyo',en:'support'},{es:'respetar',en:'to respect'},{es:'discutir',en:'to argue'},{es:'reconciliarse',en:'to make up'},{es:'comprometerse',en:'to get engaged'},{es:'casarse',en:'to get married'},{es:'divorciarse',en:'to get divorced'},{es:'la boda',en:'wedding'},{es:'el aniversario',en:'anniversary'},{es:'los celos',en:'jealousy'},{es:'la envidia',en:'envy'},{es:'estar enamorado de',en:'to be in love with'},{es:'romper',en:'to break up'},{es:'hacer las paces',en:'to make peace'},{es:'tener en común',en:'to have in common'},{es:'el punto de vista',en:'point of view'},{es:'ponerse en el lugar de',en:'to put yourself in their shoes'},{es:'el malentendido',en:'misunderstanding'}]},
+  {id:'educacion',emoji:'🎓',name:'La educación',sub:'Education',words:[{es:'el instituto',en:'secondary school'},{es:'la universidad',en:'university'},{es:'la carrera',en:'degree'},{es:'la asignatura',en:'subject'},{es:'aprobar',en:'to pass'},{es:'suspender',en:'to fail'},{es:'el examen',en:'exam'},{es:'la nota',en:'mark / grade'},{es:'sobresaliente',en:'distinction / A grade'},{es:'matricularse',en:'to enrol'},{es:'la beca',en:'scholarship'},{es:'hacer un máster',en:'to do a master's degree'},{es:'la tesis',en:'thesis'},{es:'la práctica',en:'work experience'},{es:'el aprendizaje',en:'learning'},{es:'el conocimiento',en:'knowledge'},{es:'la habilidad',en:'skill'},{es:'el idioma',en:'language'},{es:'bilingüe',en:'bilingual'},{es:'el becario',en:'scholarship student'}]},
+  {id:'salud2',emoji:'🧠',name:'Salud y bienestar',sub:'Health & wellbeing',words:[{es:'el bienestar',en:'wellbeing'},{es:'el estrés',en:'stress'},{es:'estar estresado',en:'to be stressed'},{es:'relajarse',en:'to relax'},{es:'la meditación',en:'meditation'},{es:'dormir bien',en:'to sleep well'},{es:'llevar una vida sana',en:'to lead a healthy life'},{es:'la dieta equilibrada',en:'balanced diet'},{es:'el ejercicio físico',en:'physical exercise'},{es:'dejar de fumar',en:'to give up smoking'},{es:'la salud mental',en:'mental health'},{es:'la ansiedad',en:'anxiety'},{es:'la depresión',en:'depression'},{es:'pedir ayuda',en:'to ask for help'},{es:'el psicólogo',en:'psychologist'},{es:'la terapia',en:'therapy'},{es:'recuperarse',en:'to recover'},{es:'el quirófano',en:'operating theatre'},{es:'la cirugía',en:'surgery'},{es:'el alcohol',en:'alcohol'}]},
+  {id:'trabajo2',emoji:'🚀',name:'El mundo laboral',sub:'Working world',words:[{es:'el sector',en:'sector / industry'},{es:'la carrera profesional',en:'career'},{es:'ascender',en:'to get promoted'},{es:'el ascenso',en:'promotion'},{es:'dimitir',en:'to resign'},{es:'el autónomo',en:'freelancer'},{es:'emprender',en:'to start a business'},{es:'el teletrabajo',en:'remote working'},{es:'la habilidad blanda',en:'soft skill'},{es:'el liderazgo',en:'leadership'},{es:'la motivación',en:'motivation'},{es:'el plazo',en:'deadline'},{es:'la presión laboral',en:'work pressure'},{es:'el equilibrio vida-trabajo',en:'work-life balance'},{es:'la red de contactos',en:'network'},{es:'hacer networking',en:'to network'},{es:'el sindicato',en:'trade union'},{es:'la huelga',en:'strike'},{es:'la inteligencia emocional',en:'emotional intelligence'},{es:'la startup',en:'startup'}]},
+  {id:'falsosAmigos',emoji:'⚠️',name:'Falsos amigos',sub:'False friends',words:[{es:'el éxito (NO exit)',en:'success'},{es:'la librería (NO library)',en:'bookshop'},{es:'la biblioteca (NO bookshop)',en:'library'},{es:'embarazada (NO embarrassed)',en:'pregnant'},{es:'sensible (NO sensible)',en:'sensitive'},{es:'actual (NO actual)',en:'current / present'},{es:'la fábrica (NO fabric)',en:'factory'},{es:'el campo (NO camp)',en:'countryside'},{es:'el pie (NO pie)',en:'foot'},{es:'el pan (NO pan)',en:'bread'},{es:'el collar (NO collar)',en:'necklace'},{es:'recordar (NO to record)',en:'to remember'},{es:'molestar (NO to molest)',en:'to bother'},{es:'realizar (NO to realise)',en:'to carry out'},{es:'asistir a (NO to assist)',en:'to attend'},{es:'pretender (NO to pretend)',en:'to try / to aim'},{es:'el compromiso (NO compromise)',en:'commitment'},{es:'el éxito (NO exit)',en:'success'},{es:'largo (NO large)',en:'long'},{es:'actual (NO actual)',en:'current'}]},
+  {id:'viajes2',emoji:'🗺️',name:'Viajes',sub:'Travel & experiences',words:[{es:'la mochila',en:'backpack'},{es:'el albergue juvenil',en:'youth hostel'},{es:'el crucero',en:'cruise'},{es:'las ruinas',en:'ruins'},{es:'el patrimonio',en:'heritage'},{es:'el monumento',en:'monument'},{es:'la cultura local',en:'local culture'},{es:'adaptarse',en:'to adapt'},{es:'el choque cultural',en:'culture shock'},{es:'la experiencia',en:'experience'},{es:'ampliar horizontes',en:'to broaden horizons'},{es:'el voluntariado',en:'volunteering'},{es:'el intercambio',en:'exchange'},{es:'vivir en el extranjero',en:'to live abroad'},{es:'la nostalgia',en:'homesickness'},{es:'el viaje de negocios',en:'business trip'},{es:'el seguro de viaje',en:'travel insurance'},{es:'la temporada alta',en:'peak season'},{es:'el turismo rural',en:'rural tourism'},{es:'el vuelo de conexión',en:'connecting flight'}]},
+  {id:'cultura',emoji:'🎬',name:'Arte y cultura',sub:'Arts & culture',words:[{es:'la obra de arte',en:'work of art'},{es:'el cuadro',en:'painting'},{es:'la escultura',en:'sculpture'},{es:'la novela',en:'novel'},{es:'el autor',en:'author'},{es:'la película de acción',en:'action film'},{es:'el documental',en:'documentary'},{es:'la banda sonora',en:'soundtrack'},{es:'la actuación',en:'performance'},{es:'el festival',en:'festival'},{es:'el premio',en:'award / prize'},{es:'basado en hechos reales',en:'based on a true story'},{es:'la crítica',en:'review'},{es:'el género',en:'genre'},{es:'la trama',en:'plot'},{es:'el personaje',en:'character'},{es:'el guión',en:'script'},{es:'rodar una película',en:'to shoot a film'},{es:'estrenar',en:'to release'},{es:'recomendar',en:'to recommend'}]},
+];
+
+let currentTopic=null,currentWords=[],currentIndex=0,score=0,startTime=null,timerInterval=null,elapsedSeconds=0,answered=false;
+
+function renderHub(){
+  const grid=document.getElementById('tile-grid');grid.innerHTML='';
+  TOPICS.forEach(t=>{
+    const stars=getStars(t.id);const s=stars>0?'⭐'.repeat(stars)+'☆'.repeat(3-stars):'☆☆☆';
+    const d=document.createElement('button');d.className='tile';
+    d.innerHTML=`<div class="tile-stripe"></div><div class="tile-body"><span class="tile-emoji">${t.emoji}</span><div class="tile-name">${t.name}</div><div class="tile-sub">${t.sub}</div><div class="tile-stars">${s}</div></div>`;
+    d.onclick=()=>startGame(t);grid.appendChild(d);
+  });
+}
+function showHub(){
+  document.getElementById('hub-view').style.display='block';
+  document.getElementById('game-view').style.display='none';
+  document.getElementById('results-view').style.display='none';
+  clearInterval(timerInterval);renderHub();
+}
+function startGame(t){
+  currentTopic=t;currentWords=shuffle([...t.words]);currentIndex=0;score=0;elapsedSeconds=0;
+  document.getElementById('hub-view').style.display='none';
+  document.getElementById('game-view').style.display='block';
+  document.getElementById('results-view').style.display='none';
+  document.getElementById('game-topic-name').textContent=t.emoji+' '+t.name;
+  document.getElementById('stat-score').textContent='0';
+  document.getElementById('stat-timer').textContent='0s';
+  document.getElementById('feedback-row').textContent='';
+  startTime=Date.now();clearInterval(timerInterval);
+  timerInterval=setInterval(()=>{elapsedSeconds=Math.floor((Date.now()-startTime)/1000);document.getElementById('stat-timer').textContent=elapsedSeconds+'s';},500);
+  showQuestion();
+}
+function showQuestion(){
+  if(currentIndex>=currentWords.length){endGame();return;}
+  answered=false;
+  const w=currentWords[currentIndex];
+  document.getElementById('q-spanish').textContent=w.es;
+  document.getElementById('q-hint').textContent='';
+  document.getElementById('feedback-row').textContent='';
+  document.getElementById('progress-bar').style.width=(currentIndex/currentWords.length*100)+'%';
+  const correct=w.en;
+  const others=shuffle(currentWords.filter((_,i)=>i!==currentIndex).map(x=>x.en)).slice(0,3);
+  const opts=shuffle([correct,...others]);
+  const grid=document.getElementById('answers-grid');grid.innerHTML='';
+  opts.forEach(o=>{
+    const b=document.createElement('button');b.className='ans-btn';b.textContent=o;
+    b.onclick=()=>selectAnswer(b,o,correct);grid.appendChild(b);
+  });
+}
+function selectAnswer(btn,chosen,correct){
+  if(answered)return;answered=true;
+  document.querySelectorAll('.ans-btn').forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add('correct');});
+  if(chosen===correct){btn.classList.add('correct');score++;document.getElementById('stat-score').textContent=score;document.getElementById('feedback-row').innerHTML='<span class="feedback-correct">✓ Correct!</span>';}
+  else{btn.classList.add('wrong');document.getElementById('feedback-row').innerHTML=`<span class="feedback-wrong">✗ <em>${correct}</em></span>`;}
+  currentIndex++;setTimeout(showQuestion,1100);
+}
+function endGame(){
+  clearInterval(timerInterval);
+  const total=currentWords.length,pct=score/total;
+  const stars=pct>=0.9?3:pct>=0.6?2:pct>=0.3?1:0;
+  const prevBest=getBestTime(currentTopic.id);
+  const isNewBest=prevBest===null||elapsedSeconds<prevBest;
+  saveResult(currentTopic.id,stars,elapsedSeconds);
+  document.getElementById('hub-view').style.display='none';
+  document.getElementById('game-view').style.display='none';
+  document.getElementById('results-view').style.display='block';
+  document.getElementById('results-emoji').textContent=['😬','👏','🎉','🏆'][stars];
+  document.getElementById('results-topic').textContent=currentTopic.emoji+' '+currentTopic.name;
+  document.getElementById('results-stars').textContent='⭐'.repeat(stars)+'☆'.repeat(3-stars);
+  document.getElementById('r-score').textContent=score+'/'+total;
+  document.getElementById('r-time').textContent=elapsedSeconds+'s';
+  document.getElementById('best-time-note').textContent=isNewBest&&stars>0?'🏆 ¡Nuevo récord personal!':prevBest?'Mejor tiempo anterior: '+prevBest+'s':'';
+}
+function replayGame(){startGame(currentTopic);}
+function getStars(id){return parseInt(localStorage.getItem(STORAGE_PREFIX+id+'_stars')||'0');}
+function getBestTime(id){const v=localStorage.getItem(STORAGE_PREFIX+id+'_best');return v===null?null:parseInt(v);}
+function saveResult(id,stars,time){
+  if(stars>getStars(id))localStorage.setItem(STORAGE_PREFIX+id+'_stars',stars);
+  const p=getBestTime(id);if(p===null||time<p)localStorage.setItem(STORAGE_PREFIX+id+'_best',time);
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+renderHub();
+</script>
+</body>
+</html>
