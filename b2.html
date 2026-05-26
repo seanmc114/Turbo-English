@@ -232,11 +232,13 @@ function endGame(){
   document.getElementById('best-time-note').textContent=isNewBest&&stars>0?'🏆 ¡Nuevo récord personal!':prevBest?'Mejor tiempo anterior: '+prevBest+'s':'';
 }
 function replayGame(){startGame(currentTopic);}
-function getStars(id){return parseInt(localStorage.getItem(STORAGE_PREFIX+id+'_stars')||'0');}
-function getBestTime(id){const v=localStorage.getItem(STORAGE_PREFIX+id+'_best');return v===null?null:parseInt(v);}
+function lsGet(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+function getStars(id){return parseInt(lsGet(STORAGE_PREFIX+id+'_stars')||'0');}
+function getBestTime(id){const v=lsGet(STORAGE_PREFIX+id+'_best');return v===null?null:parseInt(v);}
 function saveResult(id,stars,time){
-  if(stars>getStars(id))localStorage.setItem(STORAGE_PREFIX+id+'_stars',stars);
-  const p=getBestTime(id);if(p===null||time<p)localStorage.setItem(STORAGE_PREFIX+id+'_best',time);
+  if(stars>getStars(id))lsSet(STORAGE_PREFIX+id+'_stars',stars);
+  const p=getBestTime(id);if(p===null||time<p)lsSet(STORAGE_PREFIX+id+'_best',time);
 }
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 renderHub();
